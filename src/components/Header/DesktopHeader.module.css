@@ -1,0 +1,40 @@
+.desktopHeader {
+  width: 100%;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopHeader {
+    padding: 0.5rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: 1fr;
+    place-items: center;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-areas:
+      "logo logo logo . explore explore explore create create create authentication authentication authentication authentication";
+  }
+}
+
+@media (min-width: 1536px) {
+  .desktopHeader {
+    grid-template-areas:
+      ". logo logo . . . explore explore create create authentication authentication authentication authentication";
+  }
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.explore {
+  grid-area: explore;
+}
+
+.create {
+  grid-area: create;
+}
+
+.authentication {
+  grid-area: authentication;
+}

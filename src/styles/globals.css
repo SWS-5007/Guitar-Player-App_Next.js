@@ -1,0 +1,169 @@
+@tailwind base;
+
+/* still not 100% sure why this works, but fixes alignment
+   issues with text inside of html2canvas "screenshot"  */
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.baseFlex {
+  @apply flex items-center justify-center flex-wrap;
+}
+
+.baseVertFlex {
+  @apply flex flex-col items-center justify-center flex-wrap;
+}
+
+.lightestGlassmorphic {
+  @apply backdrop-blur-sm shadow-lightGlassmorphic bg-gradient-to-br from-pink-500/40 via-pink-500/50 to-pink-500/70;
+}
+
+.lightGlassmorphic {
+  @apply bg-pink-200 bg-opacity-20 backdrop-blur-sm shadow-sm;
+}
+
+.mobileNavbarGlassmorphic {
+  @apply bg-pink-400 bg-opacity-95 backdrop-blur-xl shadow-sm;
+}
+
+/* same gradients as background, but up by ~7% on lightness value of hsl to match the
+   glassmorphic effect. Couldn't use glassmorphic since light content bleeding through
+   made for really bad contrast issues with nav links */
+.headerBackgroundGradient {
+  background: linear-gradient(315deg, hsl(6, 100%, 63%), hsl(340, 100%, 76%), hsl(297, 100%, 87%)) fixed center / cover;
+}
+
+.footerBackgroundGradient {
+  background: linear-gradient(315deg, hsl(6, 100%, 67%), hsl(340, 100%, 79%), hsl(297, 100%, 91%)) fixed center / cover;
+}
+
+/* shadow-md was too harsh for my liking, this is a scaled back version, in-between sm and md */
+.searchInputBoxShadow {
+  box-shadow: 0 3px 4px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* basically just shadow-2xl but with less opacity on background color and slighly less blur  */
+.audioControlsBoxShadow {
+  box-shadow: 0 25px 45px -12px rgb(0 0 0 / 0.4);
+}
+
+@media (min-width: 480px) {
+  .securedByClerkBreakpoint {
+    @apply max-w-[95%];
+  }
+}
+
+@layer base {
+  :root {
+    --background: 327 73% 97%;
+    --foreground: 336 84% 17%;
+
+    --muted: 333 71% 51%;
+    --muted-foreground: 327 73% 90%;
+
+    --popover: 327 73% 97%;
+    --popover-foreground: 336 84% 17%;
+
+    --card: 327 73% 97%;
+    --card-foreground: 336 84% 17%;
+
+    --border: 327 73% 97%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 330 81% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 327 87% 82%;
+    --secondary-foreground: 336 69% 30%;
+
+    /* kind of want accent to be darker/higher contrast */
+    --accent: 326 78% 95%;
+    --accent-foreground: 336 84% 17%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 327 73% 97%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* semi hacky way to prevent empty space in gradient while mobile
+   address bar is animating out */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #fba6ff, #ff6196, #ff3721) center / cover;
+  height: 100vh;
+}
+
+body {
+  color: hsl(327, 73%, 97%);
+  min-height: 100dvh;
+}
+
+.noScroll {
+  position: fixed;
+  overflow-y: scroll;
+  inline-size: 100%;
+}
+
+.cl-internal-uxtgvn {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}
